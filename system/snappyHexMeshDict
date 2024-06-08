@@ -2,17 +2,59 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  7
+    \\  /    A nd           | Version:  10
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
-    version     2.0;
     format      ascii;
     class       dictionary;
     object      snappyHexMeshDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Bounding box geometry
+// (-428.33 135.588 -4.27159e-05) (439.98 881.833 97.3378)
+x_min -429;
+y_min 136;
+z_min -4.27159e-05;
+x_max 440;
+y_max 882;
+z_max 98;
+K 1;
+
+// box refinement definition from closest to the buildings to furthest
+// box 1
+x1_min #calc "$x_min - $K*$z_max";
+x1_max #calc "$x_max + $K*$z_max";
+y1_min #calc "$y_min - $K*$z_max";
+y1_max #calc "$y_max + 3*$K*$z_max";
+z1_min $z_min;
+z1_max #calc "$z_max + $K*$z_max";
+
+// box 2
+x2_min #calc "$x_min - 2*$K*$z_max";
+x2_max #calc "$x_max + 2*$K*$z_max";
+y2_min #calc "$y_min - 2*$K*$z_max";
+y2_max #calc "$y_max + 6*$K*$z_max";
+z2_min $z_min;
+z2_max #calc "$z_max + 1.5*$K$z_max";
+
+// box 3
+x3_min #calc "$x_min - 4*$K*$z_max";
+x3_max #calc "$x_max + 4*$K*$z_max";
+y3_min #calc "$y_min - 4*$K*$z_max";
+y3_max #calc "$y_max + 12*$K*$z_max";
+z3_min $z_min;
+z3_max #calc "$z_max + 2*$K*$z_max";
+
+
+// box 4
+x4_min #calc "$x_min - 15*$z_max";
+x4_max #calc "$x_max + 15*$z_max";
+y4_min #calc "$y_min - 15*$z_max";
+y4_max #calc "$y_max + 15*$z_max";
+z4_min $z_min;
+z4_max 5;
 
 #includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
 
@@ -22,50 +64,93 @@ addLayers       off;
 
 geometry
 {
-    buildings
-    {
-        type triSurfaceMesh;
-        file "buildings.obj";
-    }
-
-    refinementBox
+    box1
     {
         type searchableBox;
-        min  (  0   0   0);
-        max  (250 180  90);
+        min ($x1_min $y1_min $z1_min);
+        max ($x1_max $y1_max $z1_max);
     }
+
+    box2
+    {
+        type searchableBox;
+        min ($x2_min $y2_min $z2_min);
+        max ($x2_max $y2_max $z2_max);
+    }
+
+    box3
+    {
+        type searchableBox;
+        min ($x3_min $y3_min $z3_min);
+        max ($x3_max $y3_max $z3_max);
+    }
+
+    box4
+    {
+        type searchableBox;
+        min ($x4_min $y4_min $z4_min);
+        max ($x4_max $y4_max $z4_max);
+    }
+
+    Buildings
+    {
+        type triSurfaceMesh;
+        file "DelftCampus_LoD1_EWI_xyz0_rotate.stl";
+    }
+
 };
 
 castellatedMeshControls
 {
     features
     (
-      { file  "buildings.eMesh"; level 1; }
+      { file  "DelftCampus_LoD1_EWI_xyz0_rotate.eMesh"; level 4; }
     );
 
     refinementSurfaces
     {
-        buildings
+        Buildings
         {
-            level (3 3);
+            level (4 4);
             patchInfo { type wall; }
         }
     }
 
     refinementRegions
     {
-        refinementBox
+	box1
+        {
+            mode inside;
+            levels ((1E15 3));
+        }
+
+        box2
         {
             mode inside;
             levels ((1E15 2));
         }
+
+        box3
+        {
+            mode inside;
+            levels ((1E15 1));
+        }
+
+	box4
+	{
+            mode inside;
+            levels ((1E15 4));
+  	}
+
     }
 
-    locationInMesh (1 1 1);
+    insidePoint (-200 -200 10);
 }
 
 snapControls
 {
+    nSmoothPatch 	   1;
+    nFeatureSnapIter	   10;
     explicitFeatureSnap    true;
     implicitFeatureSnap    false;
 }
