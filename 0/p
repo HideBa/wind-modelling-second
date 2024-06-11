@@ -20,12 +20,12 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inlet
+    y0
     {
         type            zeroGradient;
     }
 
-    outlet
+    y1
     {
         type            totalPressure;
         p0              uniform 0;
@@ -33,11 +33,30 @@ boundaryField
         value           uniform 0;
     }
 
-    wall
+    terrain
     {
         type            zeroGradient;
     }
 
+    x0
+    {
+        type            symmetry;
+    }
+
+    x1
+    {
+        type            symmetry;
+    }
+
+    sky
+    {
+        type            symmetry;
+    }
+
+    Buildings
+    {
+        type            zeroGradient;
+    }
     #includeEtc "caseDicts/setConstraintTypes"
 }
 

@@ -20,22 +20,43 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inlet
+    y0
     {
         type            calculated;
         value           uniform 0;
     }
 
-    outlet
+    y1
     {
         type            calculated;
         value           uniform 0;
     }
 
-    wall
+    terrain
     {
         type            nutkWallFunction;
         value           uniform 0;
+    }
+
+    x0
+    {
+        type            symmetry;
+    }
+
+    x1
+    {
+        type            symmetry;
+    }
+
+    sky
+    {
+        type            symmetry;
+    }
+
+        Buildings
+    {
+        type            nutkWallFunction;
+	value		uniform 0;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"

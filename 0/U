@@ -22,19 +22,52 @@ internalField   uniform (0 0 0);
 
 boundaryField
 {
-    inlet
+    y0
     {
-        type            fixedValue;
-        value           uniform $Uinlet;
+        type            atmBoundaryLayerInletVelocity;
+        flowDir         (0 1 0);         // Wind direction along the y-axis
+        zDir            (0 0 1);         // z-axis is vertical
+        Uref            7.5;             // Reference velocity at reference height
+        Zref            10.0;            // Reference height (10 meters)
+        z0              uniform 0.2;     // Roughness length (0.2 meters)
+        d               uniform 0.0;     // Displacement height (0 meters)
+        kappa           0.41;            // Von Karman constant
+        Cmu             0.09;            // Turbulence model constant
+        initABL         true;            // Initialize the ABL
+        phi             phi;             // Name of the flux field
+        C1              0.0;             // Optional constant (typically used for custom adjustments)
+        C2              1.0;             // Optional constant (typically used for custom adjustments)
+        value           uniform (0 7.5 0);    // Initial value, used when initABL=false
+	zGround         1.95;              // Ground level (BOUNDING BOX LOEWST Z HEIGHT)
     }
 
-    outlet
+    y1
     {
         type            pressureInletOutletVelocity;
         value           uniform (0 0 0);
     }
 
-    wall
+    terrain
+    {
+        type            noSlip;
+    }
+
+    x0
+    {
+        type            symmetry;
+    }
+
+    x1
+    {
+        type            symmetry;
+    }
+
+    sky
+    {
+        type            symmetry;
+    }
+
+    Buildings
     {
         type            noSlip;
     }

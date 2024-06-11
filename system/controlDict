@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     simpleFoam;
+application     simpleTransportFoam;
 
 startFrom       latestTime;
 
@@ -22,19 +22,19 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         400;
+endTime         800;
 
 deltaT          1;
 
 writeControl    timeStep;
 
-writeInterval   50;
+writeInterval   100;
 
 purgeWrite      0;
 
 writeFormat     ascii;
 
-writePrecision  6;
+writePrecision  8;
 
 writeCompression off;
 
@@ -48,8 +48,11 @@ runTimeModifiable true;
 
 // maxCo           1;
 
+libs ("libatmosphericModels.so");
+
 functions
 {
+#includeFunc residuals
 }
 
 // ************************************************************************* //

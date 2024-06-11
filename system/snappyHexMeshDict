@@ -7,6 +7,7 @@
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
+	version     2.0;
     format      ascii;
     class       dictionary;
     object      snappyHexMeshDict;
@@ -14,12 +15,12 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 // Bounding box geometry
 // (-428.33 135.588 -4.27159e-05) (439.98 881.833 97.3378)
-x_min -429;
-y_min 136;
-z_min -4.27159e-05;
-x_max 440;
-y_max 882;
-z_max 98;
+x_min -428.329987;
+y_min 135.587997;
+z_min 1.949997;
+x_max 439.980011;
+y_max 881.833008;
+z_max 97.918800;
 K 1;
 
 // box refinement definition from closest to the buildings to furthest
@@ -95,7 +96,7 @@ geometry
     Buildings
     {
         type triSurfaceMesh;
-        file "DelftCampus_LoD1_EWI_xyz0_rotate.stl";
+        file "ROTATED_45DEG_DelftCampus_LoD2_EWI_xyz0_rotate.stl";
     }
 
 };
@@ -104,7 +105,7 @@ castellatedMeshControls
 {
     features
     (
-      { file  "DelftCampus_LoD1_EWI_xyz0_rotate.eMesh"; level 4; }
+      { file  "ROTATED_45DEG_DelftCampus_LoD2_EWI_xyz0_rotate.eMesh"; level 4; }
     );
 
     refinementSurfaces
@@ -144,7 +145,7 @@ castellatedMeshControls
 
     }
 
-    insidePoint (-200 -200 10);
+    locationInMesh (-200 -200 10);
 }
 
 snapControls
@@ -184,3 +185,4 @@ writeFlags
 mergeTolerance 1e-6;
 
 // ************************************************************************* //
+

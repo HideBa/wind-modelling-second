@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-kInlet          1.5;   // approx k = 1.5*(I*U)^2 ; I = 0.1
+kInlet          2.04;   // approx k = 1.5*(I*U)^2 ; I = 0.1
 
 dimensions      [0 2 -2 0 0 0 0];
 
@@ -22,22 +22,45 @@ internalField   uniform $kInlet;
 
 boundaryField
 {
-    inlet
+    y0
     {
         type            fixedValue;
         value           uniform $kInlet;
     }
 
-    outlet
+    y1
     {
         type            inletOutlet;
         inletValue      uniform $kInlet;
         value           uniform $kInlet;
     }
 
-    wall
+    terrain
     {
         type            kqRWallFunction;
+        value           uniform $kInlet;
+    }
+
+    x0
+    {
+        type            symmetry;
+    }
+
+
+    x1
+    {
+        type            symmetry;
+    }
+
+    sky
+    {
+        type            symmetry;
+    
+    }
+
+        Buildings
+    {
+	type            kqRWallFunction;
         value           uniform $kInlet;
     }
 

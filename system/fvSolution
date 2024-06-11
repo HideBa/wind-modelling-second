@@ -24,7 +24,7 @@ solvers
         relTol          0.1;
     }
 
-    "(U|k|omega|epsilon)"
+    "(U|k|omega|epsilon|C)"
     {
         solver          smoothSolver;
         smoother        symGaussSeidel;
@@ -39,7 +39,7 @@ SIMPLE
     {
         p               1e-4;
         U               1e-4;
-        "(k|omega|epsilon)" 1e-4;
+        "(k|omega|epsilon|C)" 1e-4;
     }
     nNonOrthogonalCorrectors 0;
     pRefCell        0;
@@ -61,7 +61,7 @@ relaxationFactors
     equations
     {
         U               0.7;
-        "(k|omega|epsilon).*" 0.7;
+        "(k|omega|epsilon|C).*" 0.7;
     }
 }
 
