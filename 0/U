@@ -28,7 +28,7 @@ boundaryField
         flowDir         (0 1 0);         // Wind direction along the y-axis
         zDir            (0 0 1);         // z-axis is vertical
         Uref            7.5;             // Reference velocity at reference height
-        Zref            10.0;            // Reference height (10 meters)
+        Zref            11.95;            // Reference height (10 meters)
         z0              uniform 0.2;     // Roughness length (0.2 meters)
         d               uniform 0.0;     // Displacement height (0 meters)
         kappa           0.41;            // Von Karman constant

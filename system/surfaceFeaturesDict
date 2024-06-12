@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-surfaces ("ROTATED_45DEG_DelftCampus_LoD2_EWI_xyz0_rotate.stl");
+surfaces ("DelftCampus_LoD2_EWI_xyz0_rotate.stl" "water_space_xyz0_rotate.stl");
 
 
 #includeEtc "caseDicts/surface/surfaceFeaturesDict.cfg"

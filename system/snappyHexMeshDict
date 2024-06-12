@@ -96,17 +96,23 @@ geometry
     Buildings
     {
         type triSurfaceMesh;
-        file "ROTATED_45DEG_DelftCampus_LoD2_EWI_xyz0_rotate.stl";
+        file "DelftCampus_LoD2_EWI_xyz0_rotate.stl";
     }
 
+    Lakes
+    {
+	type triSurfaceMesh;
+	file "water_space_xyz0_rotate.stl";
+    }
 };
 
 castellatedMeshControls
 {
     features
     (
-      { file  "ROTATED_45DEG_DelftCampus_LoD2_EWI_xyz0_rotate.eMesh"; level 4; }
-    );
+      { file  "DelftCampus_LoD2_EWI_xyz0_rotate.eMesh"; level 4; }
+      { file  "water_space_xyz0_rotate.eMesh"; level 4; }
+   );
 
     refinementSurfaces
     {
