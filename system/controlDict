@@ -22,7 +22,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         800;
+endTime         3002;
 
 deltaT          1;
 
@@ -48,11 +48,22 @@ runTimeModifiable true;
 
 // maxCo           1;
 
-libs ("libatmosphericModels.so");
+libs ("libatmosphericModels.so" "libfieldFunctionObjects.so");
 
 functions
 {
-#includeFunc residuals
-}
+    #includeFunc residuals
 
+    yPlus1
+    {
+        type            yPlus;
+        libs            ("libfieldFunctionObjects.so");
+        writePrecision  6;
+        writeToFile     true;
+        log             true;
+        executeControl  timeStep;
+        writeControl    timeStep;
+        writeInterval   100;
+    }
+}
 // ************************************************************************* //

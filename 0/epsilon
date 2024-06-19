@@ -24,10 +24,10 @@ boundaryField
 {
     y0
     {
-        type            fixedValue;
-        value           uniform $epsilonInlet;
+        type            atmBoundaryLayerInletEpsilon;
+        #include        "include/ABLConditions";
+	value		0.114;
     }
-
     y1
     {
         type            inletOutlet;
@@ -61,6 +61,17 @@ boundaryField
         type            epsilonWallFunction;
 	value		uniform $epsilonInlet;
     }
+	Water
+    {
+        type            epsilonWallFunction;
+        value           uniform $epsilonInlet;
+    }
+	Trees
+    {
+        type            epsilonWallFunction;
+        value           uniform $epsilonInlet;
+    }
+
 
     #includeEtc "caseDicts/setConstraintTypes"
 }

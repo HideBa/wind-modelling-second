@@ -24,10 +24,10 @@ boundaryField
 {
     y0
     {
-        type            fixedValue;
-        value           uniform $kInlet;
+        type            atmBoundaryLayerInletK;
+        #include        "include/ABLConditions";
+	value 		2.04;
     }
-
     y1
     {
         type            inletOutlet;
@@ -63,7 +63,16 @@ boundaryField
 	type            kqRWallFunction;
         value           uniform $kInlet;
     }
-
+ 	Water
+    {
+        type            kqRWallFunction;
+        value           uniform $kInlet;
+    }
+  	Trees
+    {
+        type            kqRWallFunction;
+        value           uniform $kInlet;
+    }
     #includeEtc "caseDicts/setConstraintTypes"
 }
 

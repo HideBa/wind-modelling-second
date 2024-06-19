@@ -99,61 +99,87 @@ geometry
         file "DelftCampus_LoD2_EWI_xyz0_rotate.stl";
     }
 
-    Lakes
+    Water
     {
-	type triSurfaceMesh;
-	file "water_space_xyz0_rotate.stl";
+        type triSurfaceMesh;
+        file "water_space_xyz0_rotate.stl";
     }
+
+    Trees
+     {
+        type triSurfaceMesh;
+        file "trees.stl";
+    }
+
+
+
 };
 
 castellatedMeshControls
 {
-    features
+features
     (
-      { file  "DelftCampus_LoD2_EWI_xyz0_rotate.eMesh"; level 4; }
-      { file  "water_space_xyz0_rotate.eMesh"; level 4; }
-   );
+        { file "DelftCampus_LoD2_EWI_xyz0_rotate.eMesh"; level 4; }
+        { file "water_space_xyz0_rotate.eMesh"; level 4; }
+   	{ file "trees.eMesh"; level 4; }
+    );
 
     refinementSurfaces
     {
         Buildings
         {
             level (4 4);
-            patchInfo { type wall; }
+            patchInfo
+            {
+                type wall;
+            }
         }
+        Water
+        {
+            level (4 4);
+            patchInfo
+            {
+                type wall;
+            }        
+	}
+	Trees
+        {
+            level (4 4);
+            patchInfo
+            {
+                type wall;
+            }
+        }
+
     }
 
     refinementRegions
     {
-	box1
+        box1
         {
             mode inside;
             levels ((1E15 3));
         }
-
         box2
-        {
+        { 
             mode inside;
             levels ((1E15 2));
         }
-
         box3
         {
             mode inside;
             levels ((1E15 1));
         }
-
-	box4
-	{
+        box4
+        {
             mode inside;
             levels ((1E15 4));
-  	}
-
+        }
     }
 
     locationInMesh (-200 -200 10);
-}
 
+}
 snapControls
 {
     nSmoothPatch 	   1;

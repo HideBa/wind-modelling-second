@@ -24,7 +24,7 @@ solvers
         relTol          0.1;
     }
 
-    "(U|k|omega|epsilon|C)"
+    "(U|k|omega|epsilon|C|nut)"
     {
         solver          smoothSolver;
         smoother        symGaussSeidel;
@@ -39,7 +39,7 @@ SIMPLE
     {
         p               1e-4;
         U               1e-4;
-        "(k|omega|epsilon|C)" 1e-4;
+        "(k|omega|epsilon|C|nut)" 1e-4;
     }
     nNonOrthogonalCorrectors 0;
     pRefCell        0;

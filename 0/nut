@@ -20,6 +20,7 @@ internalField   uniform 0;
 
 boundaryField
 {
+     #include        "include/ABLConditions"
     y0
     {
         type            calculated;
@@ -34,7 +35,8 @@ boundaryField
 
     terrain
     {
-        type            nutkWallFunction;
+        type            nutkAtmRoughWallFunction;
+	z0		$z0;
         value           uniform 0;
     }
 
@@ -58,7 +60,18 @@ boundaryField
         type            nutkWallFunction;
 	value		uniform 0;
     }
-
+    
+     Water
+    {
+        type            nutkAtmRoughWallFunction;
+        value           uniform 0;
+	z0		$z0water;
+    }
+      Trees
+    {
+        type            nutkWallFunction;
+        value           uniform 0;
+    }
     #includeEtc "caseDicts/setConstraintTypes"
 }
 

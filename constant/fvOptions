@@ -31,39 +31,18 @@ options
     massSource1
     {
         type            scalarSemiImplicitSource;
+        active          yes;
 
-        $injector1;
-
-        volumeMode      absolute;
-        injectionRateSuSp
-        {
-            thermo:rho.air     (1e-3 0); // kg/s
-        }
-    }
-
-    momentumSource1
-    {
-        type            vectorSemiImplicitSource;
-
-        $injector1;
-
-        volumeMode      absolute;
-        injectionRateSuSp
-        {
-            U.air           ((0 -1e-2 0) 0); // kg*m/s^2
-        }
-    }
-
-    energySource1
-    {
-        type            scalarSemiImplicitSource;
-
-        $injector1;
+        selectionMode   points;
+        points
+        (
+            (-5.825 508.711 3.7)
+        );
 
         volumeMode      specific;
         injectionRateSuSp
         {
-            C      (1000 0); // kg/m3
+            C      (1000 0); // Source term for scalar field C (e.g., kg/m³/s)
         }
     }
 }

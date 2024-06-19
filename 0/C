@@ -16,23 +16,20 @@ FoamFile
 
 kInlet          0;   // approx k = 1.5*(I*U)^2 ; I = 0.1
 
-dimensions      [0 0 0 0 0 0 0];
+dimensions      [1 -3 0 0 0 0 0];
 
-internalField   uniform $kInlet;
+internalField   uniform 0;
 
 boundaryField
 {
     y0
     {
-        type            fixedValue;
-        value           uniform $kInlet;
+        type            zeroGradient;
     }
 
     y1
     {
-        type            inletOutlet;
-        inletValue      uniform $kInlet;
-        value           uniform $kInlet;
+        type            zeroGradient;
     }
 
     x0
@@ -59,6 +56,15 @@ boundaryField
     {
         type            zeroGradient;
     }
+	 Water
+    {
+        type            zeroGradient;
+    }
+	 Trees
+    {
+        type            zeroGradient;
+    }
+
 
     #includeEtc "caseDicts/setConstraintTypes"
 }

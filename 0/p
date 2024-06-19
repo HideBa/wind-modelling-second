@@ -57,6 +57,17 @@ boundaryField
     {
         type            zeroGradient;
     }
+   
+    Water
+    {
+        type            zeroGradient;
+    }
+    Trees
+    {
+        type            zeroGradient;
+    }
+
+
     #includeEtc "caseDicts/setConstraintTypes"
 }
 

@@ -14,6 +14,6 @@ Description
 
 #includeEtc "caseDicts/postProcessing/numerical/residuals.cfg"
 
-fields (p U k epsilon nut C);
+fields (p U C k nut epsilon);
 
 // ************************************************************************* //

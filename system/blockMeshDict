@@ -16,14 +16,12 @@ FoamFile
 convertToMeters 1;
 
 // Model coordinates
-// (-428.33 135.588 -4.27159e-05) (439.98 881.833 97.3378)
-xm0   -428.329987;  
-ym0   135.587997;   
-zm0   1.949997; 
-xm1   439.980011;  
-ym1   881.833008;   
-H     95.968803;  
-
+xm0   -428.329987;
+ym0   135.587997;
+zm0   1.949997;
+xm1   439.980011;
+ym1   881.833008;
+H     95.968803;
 // Calculate CFD domain extension following COST732 guidelines
 x0    #calc "$xm0-5*$H";	
 x1    #calc "$xm0-1.5*$H";
@@ -39,14 +37,13 @@ z2    #calc "$H+1.5*$H";
 sky   #calc "$H+5*$H";      
 
 // Units resolution per direction
-xd1   60;//40	
-yd1   60;//40
-xd2   40;//30	
-yd2   40;//20       	
-zd1   20;//14	
-zd2   24;//18	
-zd3   60;//40
-
+xd1   60;  // 60 / 3
+yd1   60;  // 60 / 3
+xd2   40;  // 40 / 3
+yd2   40;  // 40 / 3
+zd1   20;   // 20 / 3
+zd2   24;   // 24 / 3
+zd3   60;  // 60 / 3
 // Number of cell grids per direction
 xn1    #calc "std::floor( ($x1 - $x0)/$xd1 )";
 yn1    #calc "std::floor( ($y1 - $y0)/$yd1 )";
